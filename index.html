@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 💃 House Dance | Gabs</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        /* Fontes e Reset */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Poppins:wght@300;400;600;700&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --primary: #4527A0; --primary-light: #7B54F1; --secondary: #FF9800; --dark: #263238; --light: #ECEFF1; --text: #37474F; --accent: #FF5722; }
+        body { font-family: 'Poppins', sans-serif; color: var(--text); overflow-x: hidden; background-color: #fafafa; }
+        /* Header e Navegação */
+        header { background-color: transparent; position: fixed; width: 100%; z-index: 1000; transition: all 0.3s ease; padding: 1rem 0; }
+        header.scrolled { background-color: var(--dark); box-shadow: 0 5px 20px rgba(0,0,0,0.1); padding: 0.5rem 0; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.8rem; color: var(--light); letter-spacing: 2px; }
+        .logo span { color: var(--secondary); }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 2rem; }
+        .nav-links a { color: var(--light); text-decoration: none; font-weight: 600; font-size: 1rem; transition: color 0.3s ease; position: relative; }
+        .nav-links a:hover { color: var(--secondary); }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: var(--secondary); transition: width 0.3s ease; }
+        .nav-links a:hover::after { width: 100%; }
+        .menu-btn { display: none; cursor: pointer; color: var(--light); font-size: 1.5rem; }
+        /* Hero Section */
+        .hero {
+  height: 100vh;
+  height: 100vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url('/src/foto_de_costas.jpg') right center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  color: var(--light);
+  max-width: 700px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.hero-content h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.hero-content h1 span {
+  color: var(--secondary);
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  border: 2px solid var(--primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-light);
+  border-color: var(--primary-light);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--light);
+  border: 2px solid var(--light);
+}
+
+.btn-secondary:hover {
+  background-color: var(--light);
+  color: var(--dark);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(50px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+        /* Sections Padding */
+        section { padding: 6rem 0; }
+        .section-title { text-align: center; margin-bottom: 3rem; position: relative; }
+        .section-title h2 { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; color: var(--dark); }
+        .section-title::after { content: ''; display: block; width: 80px; height: 4px; background-color: var(--secondary); margin: 0 auto; }
+        /* About */
+        .about-content { display: flex; align-items: center; gap: 4rem; }
+        .about-img { flex: 1; position: relative; border-radius: 10px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .about-img img { width: 100%; height: auto; display: block; transition: transform 0.5s ease; }
+        .about-img:hover img { transform: scale(1.05); }
+        .about-text { flex: 1; }
+        .about-text h3 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--primary); }
+        .highlight { color: var(--primary); font-weight: 600; }
+        /* Classes */
+        .classes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 2rem; }
+        .class-card { background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .class-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .class-img { height: 200px; overflow: hidden; }
+        .class-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .class-card:hover .class-img img { transform: scale(1.1); }
+        .class-content { padding: 1.5rem; }
+        .class-content h3 { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--dark); }
+        .class-meta { display: flex; justify-content: space-between; margin-bottom: 1rem; font-size: 0.9rem; color: var(--text); }
+        .class-meta span i { color: var(--secondary); margin-right: 0.3rem; }
+        .class-content p { margin-bottom: 1.5rem; line-height: 1.6; }
+        /* Schedule */
+        .schedule-container { display: flex; gap: 2rem; }
+        .schedule-days { flex: 1; }
+        .day-tab { padding: 1rem; background-color: var(--light); margin-bottom: 0.5rem; border-radius: 5px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; }
+        .day-tab.active { background-color: var(--primary); color: white; }
+        .schedule-content { flex: 2; }
+        .day-content { display: none; }
+        .day-content.active { display: block; }
+        .class-time { display: flex; align-items: center; padding: 1rem; background-color: white; margin-bottom: 1rem; border-radius: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .time { width: 100px; text-align: center; padding-right: 1rem; border-right: 2px solid var(--light); font-weight: 600; }
+        .time-content { padding-left: 1rem; flex: 1; }
+        .time-content h4 { font-size: 1.2rem; margin-bottom: 0.3rem; }
+        .time-content p { font-size: 0.9rem; opacity: 0.8; }
+        /* Testimonials */
+        .testimonials { background-color: var(--light); }
+        .testimonial-slider { position: relative; overflow: hidden; }
+        .testimonial-track { display: flex; transition: transform 0.5s ease; }
+        .testimonial { min-width: 100%; padding: 0 1rem; }
+        .testimonial-content { background-color: white; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); position: relative; }
+        .testimonial-content::after { content: ''; position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); border-width: 20px 20px 0; border-style: solid; border-color: white transparent transparent; }
+        .testimonial-content p { font-style: italic; line-height: 1.8; margin-bottom: 1rem; }
+        .testimonial-content i.quote { color: var(--primary-light); opacity: 0.2; font-size: 2rem; position: absolute; top: 1rem; right: 1rem; }
+        .testimonial-author { margin-top: 2rem; text-align: center; }
+        .author-img { width: 60px; height: 60px; border-radius: 50%; overflow: hidden; margin: 0 auto 1rem; border: 3px solid var(--secondary); }
+        .slider-nav { display: flex; justify-content: center; margin-top: 2rem; }
+        .slider-btn { background-color: var(--primary); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 0.5rem; cursor: pointer; transition: all 0.3s ease; }
+        .slider-btn:hover { background-color: var(--primary-light); transform: translateY(-3px); }
+        /* Gallery */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(250px,1fr)); gap: 1rem; }
+        .gallery-item { border-radius: 10px; overflow: hidden; position: relative; height: 250px; cursor: pointer; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .gallery-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(69,39,160,0.8); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-icon { color: white; font-size: 2rem; }
+        /* Instagram */
+        .instagram-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 1rem; }
+        .insta-item { position: relative; border-radius: 5px; overflow: hidden; aspect-ratio: 1; }
+        .insta-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .insta-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
+        .insta-item:hover img { transform: scale(1.1); }
+        .insta-item:hover .insta-overlay { opacity: 1; }
+        .instagram-follow { display: flex; align-items: center; justify-content: center; margin-top: 2rem; }
+        /* Contact */
+        .contact-container { display: flex; gap: 3rem; }
+        .contact-info { flex: 1; }
+        .contact-info h3 { font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--primary); }
+        .contact-item { display: flex; align-items: flex-start; margin-bottom: 1.5rem; }
+        .contact-icon { color: var(--secondary); font-size: 1.2rem; margin-right: 1rem; margin-top: 0.3rem; }
+        .social-links { display: flex; gap: 1rem; margin-top: 2rem; }
+        .social-link { width: 40px; height: 40px; background-color: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+        /* Footer */
+        footer { background-color: var(--dark); color: var(\--light); padding: 3rem 0 1rem; }
+        .footer-container { display: flex; flex-wrap: wrap; gap: 2rem; margin-bottom: 3rem; }
+        .footer-col { flex: 1; min-width: 200px; }
+        .footer-col h3 { font-size: 1.3rem; margin-bottom: 1.5rem; position: relative; padding-bottom: 0.5rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.8rem; }
+        .footer-col a { color: #bbb; text-decoration: none; transition: color 0.3s ease; }
+        .footer-col a:hover { color: var(--secondary); }
+        .newsletter-form { display: flex; }
+        .newsletter-form input { flex: 1; padding: 0.8rem; border: none; border-radius: 5px 0 0 5px; outline: none; }
+        .newsletter-form button { background-color: var(--secondary); color: white; border: none; padding: 0 1rem; border-radius: 0 5px 5px 0; cursor: pointer; transition: background-color 0.3s ease; }
+        .newsletter-form button:hover { background-color: #e68900; }
+        .copyright { text-align: center; padding-top: 2rem; border-top: 1px solid #444; font-size: 0.9rem; color: #bbb; }
+        .whatsapp-float {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  .whatsapp-float:hover {
+    background-color: #1DA851;
+    transform: scale(1.1);
+  }
+
+  .about-text p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+        /* Responsividade */
+        @media (max-width: 992px) { .about-content { flex-direction: column; gap: 2rem; } .contact-container { flex-direction: column; } .instagram-grid { grid-template-columns: repeat(3,1fr); } }
+        @media (max-width: 768px) { .nav-links { position: fixed; top: 0; right: -100%; height: 100vh; width: 80%; background-color: var(--dark); flex-direction: column; align-items: center; justify-content: center; transition: right 0.5s ease; z-index: 999; } .nav-links.active { right: 0; } .nav-links li { margin: 1.5rem 0; } .menu-btn { display: block; z-index: 1000; } .schedule-container { flex-direction: column; } .gallery-grid { grid-template-columns: repeat(2,1fr); } .instagram-grid { grid-template-columns: repeat(2,1fr); } }
+        @media (max-width: 576px) { .hero-content h1 { font-size: 2rem; } .gallery-grid { grid-template-columns: 1fr; } .instagram-grid { grid-template-columns: repeat(2,1fr); } .footer-container { flex-direction: column; gap: 2rem; } }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <div class="logo">HOUSE<span>DANCE</span></div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#classes">Aulas</a></li>
+                    <li><a href="#schedule">Horários</a></li>
+                    <li><a href="#gallery">Galeria</a></li>
+                    <li><a href="#instagram">Instagram</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+                <div class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></div>
+            </nav>
+        </div>
+    </header>
+    <a href="https://wa.me/5567991417526?text=Ol%C3%A1!%20Tenho%20interesse%20em%20agendar%20uma%20aula%20de%20House%20Dance."" class="whatsapp-float" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>DESCUBRA O MUNDO DO <span>HOUSE DANCE</span></h1>
+                <p>Aprenda com um professor qualificado e experiente. Desenvolva seu ritmo, expressão e técnica em um ambiente acolhedor e energético.</p>
+                <div class="hero-btns">
+                    <a href="#classes" class="btn btn-primary">Ver Aulas</a>
+                    <a href="https://wa.me/5567991417526?text=Ol%C3%A1!%20Tenho%20interesse%20em%20agendar%20uma%20aula%20de%20House%20Dance." target="_blank" class="btn btn-secondary">Agende uma Aula</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title"><h2>Sobre Mim</h2></div>
+            <div class="about-content">
+                <div class="about-img fade-in"><img src="/src/sobreMim.jpg" alt="Professor de House Dance"></div>
+                <div class="about-text fade-in">
+                    <h3>Prazer, Gabs 😁</h3>
+                    <p>Olá! Sou professor de House Dance e dançarino de danças urbanas. Comecei a dançar em 2016, aos 11 anos, e me dedico ao House desde 2019 — um estilo que me conectou profundamente com a música, a liberdade e a expressão.</p>
+        <p>Iniciei meus estudos de forma autodidata, pela internet, e fui me aprofundando com aulas, vivências e eventos no Brasil e no exterior. Ao longo dessa jornada, desenvolvi uma metodologia que valoriza técnica, musicalidade e estilo individual.</p>
+        <p>Minhas aulas são para todos os níveis e respeitam o ritmo de cada aluno, sempre em um ambiente acolhedor e inspirador. Para mim, o House Dance é mais do que dança: é cultura, resistência e conexão — e é isso que levo para cada aula.</p>
+                    <a href="#classes" class="btn btn-primary">Conheça minhas aulas</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Classes Section -->
+    <section class="classes" id="classes">
+        <div class="container">
+            <div class="section-title">
+                <h2>Minhas Aulas</h2>
+            </div>
+            <div class="classes-grid">
+                <div class="class-card fade-in">
+                    <div class="class-img">
+                        <img src="/src/aulas.jpg" alt="Aula Iniciante">
+                    </div>
+                    <div class="class-content">
+                        <h3>House Dance Iniciante</h3>
+                        <div class="class-meta">
+                            <span><i class="far fa-clock"></i> 60 min</span>
+                            <span><i class="fas fa-user-friends"></i> Máx 18 alunos</span>
+                        </div>
+                        <p>Ideal para quem está começando no House Dance. Aprenda os passos básicos, a história do estilo e desenvolva sua conexão com a música.</p>
+                        <a target="_blank" href="https://wa.me/5567991417526?text=Ol%C3%A1!%20Tenho%20interesse%20em%20agendar%20uma%20aula%20de%20House%20Dance." class="btn btn-primary">Agende uma Aula</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Schedule Section -->
+    <section class="schedule" id="schedule">
+        <div class="container">
+            <div class="section-title"><h2>Horários</h2></div>
+            <div class="schedule-container">
+                <div class="schedule-days">
+                    <div class="day-tab active" data-day="mon">Segunda</div>
+                </div>
+                <div class="schedule-content">
+                    <div class="day-content active" id="mon">
+                        <div class="class-time">
+                            <div class="time">18:00 - 19:00</div>
+                            <div class="time-content">
+                                <h4>Iniciantes</h4>
+                                <p>House Dance Iniciante</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title"><h2>Depoimentos</h2></div>
+            <div class="testimonial-slider">
+                <div class="testimonial-track">
+                    <div class="testimonial">
+                        <div class="testimonial-content"><i class="fas fa-quote-left quote"></i><p>Gosto muito da vibe calma e confortável das suas aulas, e da forma tranquila com que você explica tudo.</p><div class="testimonial-author"><div class="author-img"><img src="/src/aninha.jpg" alt="Aluno"></div><div class="author-name">Ana A.</div></div></div>
+                    </div>
+                    <div class="testimonial">
+                        <div class="testimonial-content"><i class="fas fa-quote-left quote"></i><p>Eu recomendo demais! Eu não tinha conhecimento do que era o House e decidi fazer um teste porque vários amigos elogiavam e eu queria começar na dança. Pelo pouco que tinha visto percebi que a vibe era ótima e me ajudaria a soltar o corpo, e foi o que aconteceu
+                            As pessoas são incríveis e o professor além de didático é muito divertido, não me arrependo</p><div class="testimonial-author"><div class="author-img"><img src="/src/alani.jpg" alt="Aluno"></div><div class="author-name">Alani</div></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-nav"><div class="slider-btn" id="prev"><i class="fas fa-chevron-left"></i></div><div class="slider-btn" id="next"><i class="fas fa-chevron-right"></i></div></div>
+        </div>
+    </section>
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-title"><h2>Galeria</h2></div>
+            <div class="gallery-grid">
+                <div class="gallery-item fade-in"><img src="/src/galeria1.jpeg" alt="Galeria"><div class="gallery-overlay"><i class="fas fa-search-plus gallery-icon"></i></div></div>
+                <div class="gallery-item fade-in"><img src="/src/galeria2.jpeg" alt="Galeria"><div class="gallery-overlay"><i class="fas fa-search-plus gallery-icon"></i></div></div>
+                <div class="gallery-item fade-in"><img src="/src/galeria3.jpeg" alt="Galeria"><div class="gallery-overlay"><i class="fas fa-search-plus gallery-icon"></i></div></div>
+                <div class="gallery-item fade-in"><img src="/src/galeria4.jpeg" alt="Galeria"><div class="gallery-overlay"><i class="fas fa-search-plus gallery-icon"></i></div></div>
+            </div>
+        </div>
+    </section>
+    <!-- Instagram Section -->
+    <section class="instagram" id="instagram">
+        <div class="container">
+            <div class="section-title"><h2>Instagram</h2></div>
+            <div class="instagram-grid">
+                <div class="insta-item fade-in"><img src="/src/insta1.jpg" alt="Insta"><div class="insta-overlay"><i class="fab fa-instagram"></i></div></div>
+                <div class="insta-item fade-in"><img src="/src/insta2.jpg" alt="Insta"><div class="insta-overlay"><i class="fab fa-instagram"></i></div></div>
+                <div class="insta-item fade-in"><img src="/src/insta3.jpg" alt="Insta"><div class="insta-overlay"><i class="fab fa-instagram"></i></div></div>
+                <div class="insta-item fade-in"><img src="/src/insta4.jpg" alt="Insta"><div class="insta-overlay"><i class="fab fa-instagram"></i></div></div>
+                <div class="insta-item fade-in"><img src="/src/galeria3.jpeg" alt="Insta"><div class="insta-overlay"><i class="fab fa-instagram"></i></div></div>
+                <div class="insta-item fade-in"><img src="/src/galeria4.jpeg" alt="Insta"><div class="insta-overlay"><i class="fab fa-instagram"></i></div></div>
+            </div>
+            <div class="instagram-follow"><a href="https://www.instagram.com/gaabsjf/"><i class="fab fa-instagram"></i> @gaabsjf</a></div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title"><h2>Contato</h2></div>
+            <div class="contact-container">
+                <div class="contact-info fade-in">
+                    <h3>Entre em Contato</h3>
+                    <div class="contact-item"><i class="fas fa-phone contact-icon"></i><div class="contact-text"><h4>Telefone</h4><p>(67) 99141-7526</p></div></div>
+                    <div class="contact-item"><i class="fas fa-envelope contact-icon"></i><div class="contact-text"><h4>Email</h4><p>gabrieljf268@gmail.com</p></div></div>
+                    <div class="contact-item"><i class="fas fa-map-marker-alt contact-icon"></i><div class="contact-text"><h4>Endereço</h4><p>Rua Bezerra de Menezes,933</p></div></div>
+                    <div class="social-links"></i></a><a href="https://www.instagram.com/gaabsjf/" class="social-link"><i class="fab fa-instagram"></i></a><a href="#" class="social-link"><i class="fab fa-youtube"></i></a></div>
+                </div>
+                <div class="contact-form fade-in">
+                    <form action="https://formsubmit.co/gabrieljf268@gmail.com" method="POST">
+                        <div class="form-group"><input type="text" class="form-control" placeholder="Seu Nome" required></div>
+                        <div class="form-group"><input type="email" class="form-control" placeholder="Seu Email" required></div>
+                        <div class="form-group"><textarea class="form-control" placeholder="Sua Mensagem" required></textarea></div>
+                        <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-col fade-in"><h3>Links Úteis</h3><ul><li><a href="#home">Início</a></li><li><a href="#about">Sobre</a></li><li><a href="#classes">Aulas</a></li><li><a href="#contact">Contato</a></li></ul></div>
+            <div class="footer-col fade-in"><h3>Contato</h3><ul><li>Email: gabrieljf268@gmail.com</li><li>Tel: (67) 99141-7526</li><li>MS, Brasil</li></ul></div>
+            <div class="footer-col fade-in">
+                <h3>Newsletter</h3>
+                <p>Assine nossa newsletter para novidades e promoções.</p>
+                <form class="newsletter-form" action="https://formsubmit.co/gabrieljf268@gmail.com" method="POST">
+                    <input type="email" name="email" placeholder="Seu Email" required>
+                    <input type="hidden" name="_subject" value="Nova inscrição na newsletter!">
+                    <input type="hidden" name="_captcha" value="false">
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="copyright">&copy; 2025 House Dance. Todos os direitos reservados.</div>
+    </footer>
+    <!-- Scripts -->
+    <script>
+        // Header background on scroll
+        window.addEventListener('scroll',()=>{document.getElementById('header').classList.toggle('scrolled',window.scrollY>50);});
+        // Menu toggle
+        document.getElementById('menuBtn').addEventListener('click',()=>{document.getElementById('navLinks').classList.toggle('active');});
+        // Fade-in on scroll
+        const faders=document.querySelectorAll('.fade-in');window.addEventListener('scroll',()=>{faders.forEach(el=>{const rect=el.getBoundingClientRect();if(rect.top<window.innerHeight-100){el.classList.add('active');}});});
+        // Schedule tabs
+        document.querySelectorAll('.day-tab').forEach(tab=>{tab.addEventListener('click',()=>{document.querySelectorAll('.day-tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');const day=tab.getAttribute('data-day');document.querySelectorAll('.day-content').forEach(c=>c.classList.remove('active'));document.getElementById(day).classList.add('active');});});
+        // Testimonial slider
+        const track=document.querySelector('.testimonial-track'),slides=document.querySelectorAll('.testimonial'),prev=document.getElementById('prev'),next=document.getElementById('next');let idx=0;function updateSlider(){track.style.transform=`translateX(-${idx*100}%)`;}prev.addEventListener('click',()=>{idx=(idx>0?idx-1:slides.length-1);updateSlider();});next.addEventListener('click',()=>{idx=(idx<slides.length-1?idx+1:0);updateSlider();});
+    </script>
+</body>
+</html>
